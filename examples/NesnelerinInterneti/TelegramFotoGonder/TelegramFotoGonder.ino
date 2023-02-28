@@ -25,10 +25,10 @@
 #include "esp_camera.h"
 #include <UniversalTelegramBot.h>
 
-const char* ssid = "rftek";                                          // Bağlantı kurulacak Wi-Fi ağı adı
-const char* password = "rftek001";                                   // Bağlantı kurulacak Wi-Fi ağı şifresi
-String BOTtoken = "5723954135:AAEkjNQTM11Y0xDacqMBi51FcBXmoou0bVU";  // Telegram BOT Token (HTTP API Botfather tarafından alınacak)
-String CHAT_ID = "1610009569";                                       // Chat ID numarası
+const char* ssid = "*****";      // Bağlantı kurulacak Wi-Fi ağı adı
+const char* password = "*****";  // Bağlantı kurulacak Wi-Fi ağı şifresi
+String BOTtoken = "*****";       // Telegram BOT Token (HTTP API Botfather tarafından alınacak)
+String CHAT_ID = "*****";        // Chat ID numarası
 
 bool sendPhoto = false;
 

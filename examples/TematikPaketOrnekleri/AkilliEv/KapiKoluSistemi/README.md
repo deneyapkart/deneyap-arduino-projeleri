@@ -15,7 +15,7 @@ Deneyap Dokunmatik Tuş Takımında basma süresine bağlı olarak birden fazla 
 
 ## Proje Bağlantısı 
 Bu çizimde Deneyap Kart 1A kullanılmıştır. Bu projede diğer Deneyap Geliştirme Kartlarından biri kullanılabilir. 
-![](KapiKoluSistemi_bb.png)
+![KapiKoluSistemi_bb](KapiKoluSistemi_bb.png)
 
 ## Projede Kullanılan Kütüphaneler 
 [Deneyap Dokunmatik Tuş Takımı by Turkish Technnology Team Foundation (T3)](https://github.com/deneyapkart/deneyap-dokunmatik-tus-takimi-arduino-library)
@@ -24,10 +24,6 @@ Bu çizimde Deneyap Kart 1A kullanılmıştır. Bu projede diğer Deneyap Geliş
 
 [Deneyap OLED by Turkish Technnology Team Foundation (T3)](https://github.com/deneyapkart/deneyap-oled-ekran-arduino-library)
 
-## Proje Fotoğrafları ve Videosu
+## Proje Fotoğrafı
 
-KapiKoluSistemi2.mp4
-
-![](KapiKoluSistemi1.png)
-
-![](KapiKoluSistemi2.png)
+![KapiKoluSistemi2](KapiKoluSistemi.jpg)

@@ -16,6 +16,6 @@ Deneyap Kartta dahili 6-Eksen Ataletsel Ölçüm Birimi (IMU)dan alınan dönme 
 [Adafruit ST7735 and ST7789 Library by Adafruit](https://github.com/adafruit/Adafruit-ST7735-Library)
 
 ## Proje Videosu
-<a href=" https://www.youtube.com/watch?v=Dl-xxMwenRA&ab_channel=Dicle" target="_blank">
+<a href="https://www.youtube.com/watch?v=Dl-xxMwenRA&ab_channel=Dicle" target="_blank">
  <img src="https://i3.ytimg.com/vi/Dl-xxMwenRA/maxresdefault.jpg" alt="Watch the video" width="240" height="180" border="10" />
 </a>

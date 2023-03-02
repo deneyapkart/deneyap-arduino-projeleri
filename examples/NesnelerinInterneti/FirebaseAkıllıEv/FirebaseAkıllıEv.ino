@@ -8,7 +8,7 @@ Deneyap Kart Akıllı Ev Mobil Uygulaması
 
       Kontrol arayüzü yakın da yayınlanacaktır.
       
-      Proje de Deneyap Role, Deneyap OLED, Deneyap Sıcaklık Nem Ölçer ve Deneyap Hareket Algılayıcı Kullanılmıştır.
+      Proje de Deneyap Role, Deneyap OLED ve Deneyap Sıcaklık Nem Ölçer
 
       github.com/pxsty0
 
@@ -19,7 +19,6 @@ Deneyap Kart Akıllı Ev Mobil Uygulaması
 #include <Deneyap_Role.h>  
 #include <Deneyap_OLED.h>
 #include <Deneyap_SicaklikNemOlcer.h>
-#include <Deneyap_HareketAlgilama.h>
 
 #define WLAN_SSID       ""
 #define WLAN_PASS       ""
@@ -36,7 +35,6 @@ FirebaseAuth auth;
 FirebaseConfig config;
 OLED OLED;
 TempHum TempHum; 
-Gesture Hareket; 
 
 void setup(){
   Serial.begin(115200);
@@ -70,11 +68,7 @@ void setup(){
       delay(3000);
       Serial.println("I2C bağlantısı başarısız ");
    }
-     if (!Hareket.begin(0x32)) {
-        delay(3000);
-        Serial.println("I2C bağlantısı başarısız ");
-        while (1);
-    }
+
   Serial.println();
   Serial.print("Baglandı. IP: ");
   Serial.println(WiFi.localIP());
@@ -109,7 +103,6 @@ void loop(){
   if (Firebase.ready()){
     float Tempvalue = TempHum.getTempValue();
     float Humvalue = TempHum.getHumValue(); 
-    bool gestureDurum = Hareket.readGesture();
 
     String redLed = "Kapali";
     String blueLed = "Kapali";
@@ -118,13 +111,7 @@ void loop(){
 
     Firebase.RTDB.set(&fbdo,"temp",Tempvalue);
     Firebase.RTDB.set(&fbdo,"humidity",Humvalue);
-
-    if(gestureDurum == 1){
-      Firebase.RTDB.set(&fbdo,"hareket",1);
-      delay(1000);
-      Firebase.RTDB.set(&fbdo,"hareket",0);
-      }
-
+    
 if (Firebase.RTDB.get(&fbdo, "door")){
 if (fbdo.dataType() == "int"){
 

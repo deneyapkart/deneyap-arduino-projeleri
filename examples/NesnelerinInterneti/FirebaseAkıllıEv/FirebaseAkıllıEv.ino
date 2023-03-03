@@ -8,7 +8,7 @@ Deneyap Kart Akıllı Ev Mobil Uygulaması
 
       Kontrol arayüzü yakın da yayınlanacaktır.
       
-      Proje de Deneyap Role, Deneyap OLED ve Deneyap Sıcaklık Nem Ölçer
+      Proje de Deneyap Role, Deneyap OLED ve Deneyap Sıcaklık Nem Ölçer kullanılmıştır 
 
       github.com/pxsty0
 

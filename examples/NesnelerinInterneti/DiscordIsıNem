@@ -16,10 +16,10 @@ Webhook nasıl alınır? -> https://github.com/pxsty0/pxsty0/blob/main/WebhookNa
 #include <Discord_WebHook.h>
 
 #define DHT11PIN D8                // DHT11 Sensor Pini
-#define WIFI_SSID "********"       // Wifi Adı
-#define WIFI_PASS "********"       // Wifi Şifresi
-#define DISCORD_WEBHOOK "******"  // Discord Webhook Adresi
-int delayVal = 1;                 // Kaç Dakikada Bir Mesaj Atılacağını Belirtiyoruz
+#define WIFI_SSID "pxsty"       // Wifi Adı
+#define WIFI_PASS "kokmustafa123@"       // Wifi Şifresi
+#define DISCORD_WEBHOOK "https://discord.com/api/webhooks/1091428107401056347/RxfRnY9QKFcAwIfs5CaVB2qaoQ0EZ6kF-t8sar_dWBKrnYE_FA2I2_Z-5MVO-YVi0P2y"  // Discord Webhook Adresi
+int delayVal = 30;                 // Kaç Dakikada Bir Mesaj Atılacağını Belirtiyoruz
 
 Discord_Webhook discord;
 DHT dht(DHT11PIN, DHT11);
@@ -35,15 +35,12 @@ void setup() {
   }
   discord.begin(DISCORD_WEBHOOK);
   Serial.println("Baglanti Saglandi");
-  float hum = dht.readHumidity();
-  float temp = dht.readTemperature();
-  discord.send("Deneyap Kart Aktif");
-  discord.send("Sıcaklık : "+String(temp)+" | Nem : "+String(hum));
+  discord.send("Deneyap Kart Aktif :white_check_mark:");
 }
 
 void loop() {
   float hum = dht.readHumidity();
   float temp = dht.readTemperature();
-  discord.send("Sıcaklık : "+String(temp)+" | Nem : "+String(hum));
+  discord.send("Sıcaklık : "+String(temp)+" °C | Nem : "+String(hum)+" %");
   delay(delayVal * 60 * 1000);
 }

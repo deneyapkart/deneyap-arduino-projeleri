@@ -1,22 +1,22 @@
-/*
-Deneyap Kart Akıllı Ev Mobil Uygulaması
+/* FirebaseAkıllıEv
 
-      Bu uygulama ile evinize ait sıcaklık ve nem verilerini saniyelik
-      öğrenebilirsiniz. Uygulama üzerinden uzaktan bağlantı ile evinizin
-      kapısını, klimasını, kombisini ve daha bir çok elektronik eşyanızı
-      kontrol edebilirsiniz.
+github.com/pxsty0 tarafından eklendi.
 
-      Kontrol arayüzü yakın da yayınlanacaktır.
-      
-      Proje de Deneyap Role, Deneyap OLED ve Deneyap Sıcaklık Nem Ölçer kullanılmıştır 
+Proje de Deneyap Mini, Deneyap Röle, Deneyap OLED Ekran ve Deneyap Sıcaklık ve Nem Ölçer kullanılmıştır
 
-      github.com/pxsty0
+Bu uygulama ile evinize ait sıcaklık ve nem verilerini saniyelik öğrenebilirsiniz.
+Uygulama üzerinden uzaktan bağlantı ile evinizin kapısını, klimasını, kombisini ve daha bir çok elektronik eşyanızı kontrol edebilirsiniz.
 
+Kontrol arayüzü yakın da yayınlanacaktır.
+
+==============================================================================
+ Bu uygulama örneği için "Firebase ESP32 Client by Mobizt" kütüphanesi indirilmelidir.  ->https://github.com/mobizt/Firebase-ESP32<-
+==============================================================================
 */
 
 #include <WiFi.h>
 #include <Firebase_ESP_Client.h>
-#include <Deneyap_Role.h>  
+#include <Deneyap_Role.h>
 #include <Deneyap_OLED.h>
 #include <Deneyap_SicaklikNemOlcer.h>
 
@@ -29,17 +29,17 @@ Deneyap Kart Akıllı Ev Mobil Uygulaması
 #define USER_EMAIL ""
 #define USER_PASSWORD ""
 
-Relay Role;   
+Relay Role;
 FirebaseData fbdo;
 FirebaseAuth auth;
 FirebaseConfig config;
 OLED OLED;
-TempHum TempHum; 
+TempHum TempHum;
 
 void setup(){
   Serial.begin(115200);
   OLED.begin(0x7A);
-  OLED.clearDisplay();    
+  OLED.clearDisplay();
   WiFi.begin(WLAN_SSID, WLAN_PASS);
   pinMode(LEDR, OUTPUT);
   pinMode(LEDG, OUTPUT);
@@ -59,7 +59,7 @@ void setup(){
     Serial.print(".");
     delay(300);
   }
-     if(!Role.begin(0x0C)){ 
+     if(!Role.begin(0x0C)){
       delay(3000);
       Serial.println("I2C bağlantısı başarısız ");
       while(1);
@@ -75,7 +75,7 @@ void setup(){
   Serial.println();
 
   config.api_key = API_KEY;
-  
+
   config.database_url = DATABASE_URL;
 
   auth.user.email = USER_EMAIL;
@@ -87,7 +87,7 @@ void setup(){
     Serial.print('.');
     delay(1000);
   }
-  OLED.clearDisplay();   
+  OLED.clearDisplay();
   OLED.setTextXY(0, 0);
   OLED.putString("****************");
   OLED.setTextXY(2, 0);
@@ -102,7 +102,7 @@ void setup(){
 void loop(){
   if (Firebase.ready()){
     float Tempvalue = TempHum.getTempValue();
-    float Humvalue = TempHum.getHumValue(); 
+    float Humvalue = TempHum.getHumValue();
 
     String redLed = "Kapali";
     String blueLed = "Kapali";
@@ -111,7 +111,7 @@ void loop(){
 
     Firebase.RTDB.set(&fbdo,"temp",Tempvalue);
     Firebase.RTDB.set(&fbdo,"humidity",Humvalue);
-    
+
 if (Firebase.RTDB.get(&fbdo, "door")){
 if (fbdo.dataType() == "int"){
 
@@ -121,7 +121,7 @@ if (fbdo.dataType() == "int"){
    door = "Acik";
  }
  else if(data == 0){
-   Role.RelayDrive(0);  
+   Role.RelayDrive(0);
    door = "Kapali";
  }
 }
@@ -168,7 +168,7 @@ if (fbdo.dataType() == "int"){
  }
 }
 }
-  OLED.clearDisplay();   
+  OLED.clearDisplay();
   OLED.setTextXY(0, 0);
   OLED.putString("Role : "+door);
   OLED.setTextXY(2, 0);

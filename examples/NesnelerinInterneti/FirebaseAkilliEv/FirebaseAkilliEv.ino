@@ -1,4 +1,4 @@
-/* FirebaseAkıllıEv
+/* FirebaseAkilliEv
 
 github.com/pxsty0 tarafından eklendi.
 

@@ -1,32 +1,32 @@
-/*DiscordIsıNem
+/*DiscordSicaklikNem
 
 Mustafa "pxsty" kök tarafından eklendi --> github.com/pxsty0
 
-Bu projede discord kanalına DHT11 sensorü aracılığıyla sıcaklık ve nem Verisi istenilen zaman aralığından gönderilmektedir
+Bu projede discord kanalına deneyap sıcaklık ve nem ölçer sensorü aracılığıyla sıcaklık ve nem Verisi istenilen zaman aralığından gönderilmektedir
 
-Bu uygulama örneği için "DHTlib" kütüphanesi indirilmelidir.  -> https://github.com/RobTillaart/DHTlib <-
+Bu uygulama örneği için "Deneyap_SicaklikNemOlcer" kütüphanesi indirilmelidir.  -> https://github.com/deneyapkart/deneyap-sicaklik-nem-olcer-arduino-library <-
 Bu uygulama örneği için "Usini Discord WebHook" kütüphanesi indirilmelidir.  -> https://github.com/usini/usini_discord_webHook <-
 Webhook nasıl alınır -> https://github.com/pxsty0/pxsty0/blob/main/WebhookNasilAlinir.md <-
 
 
 
 */
-#include <DHT.h>
 #include <WiFi.h>
 #include <Discord_WebHook.h>
+#include <Deneyap_SicaklikNemOlcer.h>
 
-#define DHT11PIN D8                // DHT11 Sensor Pini
-#define WIFI_SSID ""       // Wifi Adı
-#define WIFI_PASS ""       // Wifi Şifresi
+
+#define WIFI_SSID ""        // Wifi Adı
+#define WIFI_PASS ""        // Wifi Şifresi
 #define DISCORD_WEBHOOK ""  // Discord Webhook Adresi
-int delayVal = 30;                 // Kaç Dakikada Bir Mesaj Atılacağını Belirtiyoruz
+int delayVal = 30;          // Kaç Dakikada Bir Mesaj Atılacağını Belirtiyoruz
 
 Discord_Webhook discord;
-DHT dht(DHT11PIN, DHT11);
+TempHum tempHum;
 
 void setup() {
   Serial.begin(9600);
-  dht.begin();
+  tempHum.begin(0x70);
   WiFi.begin(WIFI_SSID, WIFI_PASS);
   Serial.print("Wi-Fi Baglanıyor...");
   while (WiFi.status() != WL_CONNECTED) {
@@ -39,8 +39,8 @@ void setup() {
 }
 
 void loop() {
-  float hum = dht.readHumidity();
-  float temp = dht.readTemperature();
-  discord.send("Sıcaklık : "+String(temp)+" °C | Nem : "+String(hum)+" %");
+  float hum = tempHum.getHumValue();
+  float temp = tempHum.getTempValue();
+  discord.send("Sıcaklık : " + String(temp) + " °C | Nem : " + String(hum) + " %");
   delay(delayVal * 60 * 1000);
 }

@@ -1,3 +1,2 @@
 # Deneyap Arduino Projeleri
-
-Bu kütüphane Deneyap Kartları, modülleri veya sensörleri ile yapılan proje örnekleri içermektedir. 
+Bu kütüphane Deneyap Geliştirme Kart'larını ile birlikte Deneyap Modül'lerini kullanarak yapılan proje örneklerini içermektedir.

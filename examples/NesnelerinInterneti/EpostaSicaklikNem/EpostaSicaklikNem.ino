@@ -57,7 +57,7 @@ void setup() {
 void loop() {
   SMTP_Message message;
 
-  message.sender.name = "Pxsty | Bot";  // Gönderici Adı
+  message.sender.name = "Deneyap Kart";  // Gönderici Adı
   message.subject = "Sensör Verileri";  // E-posta konusu
   message.sender.email = RECEIVER_EMAIL;
   message.addRecipient("", RECEIVER_EMAIL);
